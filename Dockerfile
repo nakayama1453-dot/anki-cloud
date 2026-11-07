@@ -1,6 +1,7 @@
-FROM node:18-alpine
+FROM oven/bun:1
 WORKDIR /app
-COPY package*.json ./
-RUN npm install
 COPY . .
+RUN bun install --frozen-lockfile
+ENV PORT=3000
 EXPOSE 3000
+CMD ["bun", "run", "api/src/index.ts"]
